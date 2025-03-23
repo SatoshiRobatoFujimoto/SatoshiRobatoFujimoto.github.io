@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭用プリンター11選 グラレコ風まとめ</title>
+    <style>
+        body {
+            font-family: "Hiragino Kaku Gothic Pro", "メイリオ", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #3a3a3a;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #4a86e8;
+            padding-bottom: 10px;
+        }
+        .budget-section {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .budget-title {
+            font-size: 1.8rem;
+            color: white;
+            background: #4a86e8;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            transform: rotate(-2deg);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        .printer-card {
+            display: flex;
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(to right, #ffffff, #f3f3f3);
+            position: relative;
+        }
+        .printer-title {
+            font-size: 1.5rem;
+            background: #34a853;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 0 0 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-1deg) translateY(-5px);
+            z-index: 1;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+        .merits-demerits {
+            display: flex;
+            flex: 1;
+        }
+        .merits, .demerits {
+            padding: 30px 20px 20px;
+            flex: 1;
+            position: relative;
+        }
+        .merits {
+            background: rgba(52, 168, 83, 0.1);
+            border-right: 1px dashed #ccc;
+        }
+        .demerits {
+            background: rgba(234, 67, 53, 0.1);
+        }
+        .section-label {
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        .merits .section-label {
+            color: #34a853;
+        }
+        .demerits .section-label {
+            color: #ea4335;
+        }
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .merits .section-label::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334a853'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+        }
+        .demerits .section-label::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea4335'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.95rem;
+        }
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .merits li::before {
+            background-color: #34a853;
+        }
+        .demerits li::before {
+            background-color: #ea4335;
+        }
+        .doodle {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .pen {
+            top: 10px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a86e8'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+        }
+        .printer-icon {
+            top: 50%;
+            left: 10px;
+            width: 80px;
+            height: 80px;
+            transform: translateY(-50%);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a86e8'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z'/%3E%3C/svg%3E");
+        }
+        .price-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #fbbc05;
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-left: 15px;
+            transform: rotate(3deg);
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        @media (max-width: 768px) {
+            .printer-card {
+                flex-direction: column;
+            }
+            .merits-demerits {
+                flex-direction: column;
+            }
+            .merits {
+                border-right: none;
+                border-bottom: 1px dashed #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>家庭用プリンター11選 グラレコ風まとめ</h1>
+        
+        <!-- 予算1万円以下 -->
+        <div class="budget-section">
+            <div class="doodle pen"></div>
+            <div class="doodle printer-icon"></div>
+            <h2 class="budget-title">予算1万円以下</h2>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">Canon TS3730</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>本体価格が安い</li>
+                            <li>必要最低限の機能が揃っている</li>
+                            <li>大容量インク使用で写真印刷が1枚28.1円と、低価格帯ではお得</li>
+                            <li>コンパクトサイズ</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>カラー印刷でイラストの背景部分にインクジェット特有の筋が入ることがある</li>
+                            <li>モノクロ印刷は若干グレーがかっている</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">EPSON EW-056A</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>本体価格が安い</li>
+                            <li>必要最低限の機能が揃っている</li>
+                            <li>独立型インクカートリッジ採用で、なくなった色だけ交換できるので経済的</li>
+                            <li>黒だけモード、黒インクセーブモード搭載</li>
+                            <li>コンパクトサイズ</li>
+                            <li>Wi-Fi対応で、スマホから手軽に印刷できる</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>カラー印刷でイラストの背景部分に縦筋が入ることがある</li>
+                            <li>モノクロ印刷は若干グレーがかっている</li>
+                            <li>L版写真印刷は、ファーストプリントで1分3秒、2枚目以降も54秒と時間がかかる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 予算1～3万円 -->
+        <div class="budget-section">
+            <div class="doodle pen"></div>
+            <div class="doodle printer-icon"></div>
+            <h2 class="budget-title">予算1～3万円</h2>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">HP ENVY 6020</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>本体価格が安い</li>
+                            <li>低価格帯では珍しい機能性(自動両面印刷など)とコストパフォーマンス</li>
+                            <li>スマートスピーカー対応</li>
+                            <li>HP CarePack購入で最長3年の延長保証</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>写真印刷は縦筋が入りやすく、やや暗めな仕上がりになる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">brother DCP-J4143N</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>独立型インクで経済的</li>
+                            <li>ファーストプリントが速い(A4モノクロ:約6秒、A4カラー:約9.5秒)</li>
+                            <li>自動両面プリント</li>
+                            <li>タッチパネル搭載</li>
+                            <li>前面二段給紙と手差しトレイで、A4とはがきを同時にセット可能</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>写真印刷はややあっさりした仕上がりで、若干青みが強い</li>
+                            <li>インクの補充時に手が汚れやすい</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 予算3～4万円 -->
+        <div class="budget-section">
+            <div class="doodle pen"></div>
+            <div class="doodle printer-icon"></div>
+            <h2 class="budget-title">予算3～4万円</h2>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">Canon G3390</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>インクタンク式で、大量印刷が可能(A4モノクロ:約6,000枚、カラー:約7,700枚)</li>
+                            <li>印刷コストが安い(A4モノクロ:約0.4円/枚、カラー:約1.0円/枚)</li>
+                            <li>1色ずつ補充できるので無駄がない</li>
+                            <li>自動紙幅検知機能搭載</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>写真印刷で縦筋が入ることがある</li>
+                            <li>写真印刷のスピードはあまり速くない</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">EPSON EP-887AP</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>インクタンク式で、大量印刷が可能(A4モノクロ:約6,000枚、カラー:約3,700枚)</li>
+                            <li>印刷コストが安い(A4モノクロ:約1.5円/枚、カラー:約3.5円/枚)</li>
+                            <li>6色インク搭載で、写真印刷が綺麗</li>
+                            <li>自動両面プリント</li>
+                            <li>コンパクトデザインで、インテリアにも馴染む</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>人物写真はやや赤みが強調され、暖かみのあるトーンで表現される傾向がある</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 予算4万円以上 -->
+        <div class="budget-section">
+            <div class="doodle pen"></div>
+            <div class="doodle printer-icon"></div>
+            <h2 class="budget-title">予算4万円以上</h2>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">HP OfficeJet Pro 8120</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>全色顔料インク採用で、文字印刷がくっきり綺麗</li>
+                            <li>印刷スピードが速い</li>
+                            <li>自動原稿送り装置(ADF)搭載</li>
+                            <li>2段の前面給紙トレイと背面給紙の3way給紙</li>
+                            <li>HP Wolf Essential Securityで高セキュリティ</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>写真印刷の品質は、家庭用としては優れているものの、プロレベルには及ばない</li>
+                            <li>インクジェット特有の筋が入ることがある</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">brother DCP-J528N</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>A4モノクロ約2円/枚、カラー約5円/枚と圧倒的な低コスト</li>
+                            <li>印刷スピードが速い</li>
+                            <li>自動両面プリント</li>
+                            <li>コンパクトなサイズ感</li>
+                            <li>給紙方法が3種類から選べる</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>インクタンク式でありながら、インク補充時に手が汚れやすく、少し手間に感じることもある</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="printer-card">
+                <h3 class="printer-title">Canon XK130</h3>
+                <div class="merits-demerits">
+                    <div class="merits">
+                        <div class="section-label">メリット</div>
+                        <ul>
+                            <li>写真印刷の再現率が、今回紹介する機種の中ではトップクラス</li>
+                            <li>自動紙幅検知機能搭載</li>
+                            <li>コンパクトサイズ</li>
+                        </ul>
+                    </div>
+                    <div class="demerits">
+                        <div class="section-label">デメリット</div>
+                        <ul>
+                            <li>写真印刷でやや縦筋が入ることがある</li>
+                            <li>インクの減りが早い場合がある</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            この表を参考に、ご自身の予算や使い方に合ったプリンター選びの参考にしてください。
+        </footer>
+    </div>
+</body>
+</html>
