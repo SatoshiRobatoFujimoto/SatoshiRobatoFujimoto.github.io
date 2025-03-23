@@ -1,0 +1,1 @@
+# SatoshiRobatoFujimoto.github.io
