@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自動化時代に必要な産業と役割</title>
+    <style>
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .title-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #3498db, #9b59b6, #2ecc71);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+        
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .industry-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .industry-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+        }
+        
+        .experience-card::before { background-color: #3498db; }
+        .meaning-card::before { background-color: #2ecc71; }
+        .tech-society-card::before { background-color: #9b59b6; }
+        .regenerative-card::before { background-color: #f1c40f; }
+        .personalization-card::before { background-color: #e74c3c; }
+        .metacognition-card::before { background-color: #1abc9c; }
+        .tech-mediation-card::before { background-color: #34495e; }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .industry-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+        
+        .experience-icon { background-color: #3498db; }
+        .meaning-icon { background-color: #2ecc71; }
+        .tech-society-icon { background-color: #9b59b6; }
+        .regenerative-icon { background-color: #f1c40f; }
+        .personalization-icon { background-color: #e74c3c; }
+        .metacognition-icon { background-color: #1abc9c; }
+        .tech-mediation-icon { background-color: #34495e; }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 0;
+            color: #2c3e50;
+        }
+        
+        .role-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .role-item {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .role-item:last-child {
+            border-bottom: none;
+        }
+        
+        .role-icon {
+            min-width: 24px;
+            height: 24px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 0.8em;
+            color: #555;
+        }
+        
+        .role-text {
+            flex: 1;
+        }
+        
+        .role-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .role-desc {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .timeline-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            height: 100%;
+            width: 4px;
+            background: #f0f0f0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 45px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid #3498db;
+            z-index: 1;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #3498db;
+        }
+        
+        .timeline-content {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .comparison-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .conclusion-section {
+            background-color: #2c3e50;
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .conclusion-section::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            left: -70px;
+            width: 140px;
+            height: 140px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        .conclusion-title {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .conclusion-text {
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        
+        .conclusion-highlight {
+            background-color: rgba(52, 152, 219, 0.3);
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        
+        .note-bubble {
+            background-color: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .note-bubble::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #f9f9f9;
+            border-top: 2px solid #e0e0e0;
+            border-left: 2px solid #e0e0e0;
+            transform: rotate(45deg);
+        }
+        
+        .note-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        /* ドローイング風の装飾 */
+        .hand-drawn {
+            position: relative;
+        }
+        
+        .hand-drawn::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            z-index: -1;
+            transform: rotate(-0.5deg);
+        }
+        
+        .doodle {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 50px;
+            z-index: -1;
+        }
+        
+        .doodle-1 { top: 10%; right: 5%; transform: rotate(15deg); }
+        .doodle-2 { bottom: 20%; left: 7%; transform: rotate(-10deg); }
+        .doodle-3 { top: 40%; left: 8%; transform: rotate(5deg); }
+        .doodle-4 { bottom: 10%; right: 8%; transform: rotate(-5deg); }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .industry-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .industry-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-item {
+                padding-left: 35px;
+            }
+            
+            .timeline-item::before {
+                width: 25px;
+                height: 25px;
+                top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <h1>自動化時代に必要な産業と役割</h1>
+                <p class="subtitle">AIとロボットの進化により生まれる新たな産業生態系</p>
+            </div>
+        </header>
+        
+        <div class="industry-grid">
+            <div class="industry-card experience-card">
+                <div class="card-header">
+                    <div class="industry-icon experience-icon">🌟</div>
+                    <h2>人間体験デザイン産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">感覚・情緒体験設計</div>
+                            <div class="role-desc">機械では提供できない五感を刺激する体験設計</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">コミュニティ構築</div>
+                            <div class="role-desc">人間同士の深い繋がりを促進するサービス</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">文化的没入体験</div>
+                            <div class="role-desc">歴史や伝統を体感できる参加型エンターテイメント</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">技術の人間化</div>
+                            <div class="role-desc">テクノロジーと人間性の間のインターフェースデザイン</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card meaning-card">
+                <div class="card-header">
+                    <div class="industry-icon meaning-icon">🧠</div>
+                    <h2>意味創造・価値形成産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">パーソナルナラティブ</div>
+                            <div class="role-desc">個人の人生の意味づけを支援するコーチング</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">共同体の物語構築</div>
+                            <div class="role-desc">地域社会のアイデンティティ形成支援</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">倫理的・哲学的コンサルティング</div>
+                            <div class="role-desc">技術革新に伴う倫理的課題への対応</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">文化的価値の翻訳者</div>
+                            <div class="role-desc">異なる価値観間の橋渡しを行う専門家</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card tech-society-card">
+                <div class="card-header">
+                    <div class="industry-icon tech-society-icon">⚖️</div>
+                    <h2>技術社会調整産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">技術倫理規制</div>
+                            <div class="role-desc">AIやロボット技術の社会実装における倫理指針策定</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">社会的影響評価</div>
+                            <div class="role-desc">新技術導入による社会変化の予測・評価・対応</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">人間・AI協働デザイン</div>
+                            <div class="role-desc">人間とAIの最適な役割分担設計</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">テクノロジー・ウェルビーイング</div>
+                            <div class="role-desc">技術と人間の幸福の両立支援</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card regenerative-card">
+                <div class="card-header">
+                    <div class="industry-icon regenerative-icon">🌱</div>
+                    <h2>再生・循環型産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">生態系再生</div>
+                            <div class="role-desc">自然環境の回復・保全に関するプロジェクト</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">循環型資源管理</div>
+                            <div class="role-desc">限られた資源の持続可能な利用設計</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">気候変動適応</div>
+                            <div class="role-desc">環境変化に対応するためのインフラ・生活様式設計</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">バイオミミクリー</div>
+                            <div class="role-desc">自然の仕組みを模倣した持続可能な設計</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card personalization-card">
+                <div class="card-header">
+                    <div class="industry-icon personalization-icon">👤</div>
+                    <h2>超個人化サービス産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">遺伝子に基づく個別化医療</div>
+                            <div class="role-desc">個人の生物学的特性に合わせた健康管理</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">認知パターン対応教育</div>
+                            <div class="role-desc">個人の思考・学習スタイルに最適化された教育</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">微文化ニッチ対応</div>
+                            <div class="role-desc">極小規模の文化的嗜好に対応する商品・体験設計</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">個人データ主権管理</div>
+                            <div class="role-desc">自己情報のコントロールを支援するサービス</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card metacognition-card">
+                <div class="card-header">
+                    <div class="industry-icon metacognition-icon">🔍</div>
+                    <h2>メタ認知・能力増強産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">認知拡張トレーニング</div>
+                            <div class="role-desc">AIと協働するための思考法開発</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">創造性育成</div>
+                            <div class="role-desc">機械が模倣できない発想力を引き出すプログラム</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">情報評価能力開発</div>
+                            <div class="role-desc">膨大な情報から真に価値あるものを見分ける能力向上</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">自己変革支援</div>
+                            <div class="role-desc">絶え間ない変化に適応する心理的レジリエンス構築</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="industry-card tech-mediation-card">
+                <div class="card-header">
+                    <div class="industry-icon tech-mediation-icon">🔄</div>
+                    <h2>テクノロジー仲介産業</h2>
+                </div>
+                <ul class="role-list">
+                    <li class="role-item">
+                        <div class="role-icon">1</div>
+                        <div class="role-text">
+                            <div class="role-title">人間-AI翻訳者</div>
+                            <div class="role-desc">複雑な人間のニーズをAIに伝える専門家</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">2</div>
+                        <div class="role-text">
+                            <div class="role-title">技術アクセシビリティ設計</div>
+                            <div class="role-desc">全ての人が技術の恩恵を受けられる仕組み作り</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">3</div>
+                        <div class="role-text">
+                            <div class="role-title">デジタルウェルネス</div>
+                            <div class="role-desc">技術との健全な関係構築支援</div>
+                        </div>
+                    </li>
+                    <li class="role-item">
+                        <div class="role-icon">4</div>
+                        <div class="role-text">
+                            <div class="role-title">非テック領域専門家</div>
+                            <div class="role-desc">意図的に技術を使わない空間・体験設計</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="timeline-section">
+            <h3>自動化による産業変革タイムライン</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">現在〜2030年</div>
+                    <div class="timeline-content">
+                        <p><strong>定型業務の自動化フェーズ</strong>：データ入力、基本的な製造、単純な顧客対応などが自動化</p>
+                        <p>必要とされる産業：AIとの協働スキル開発、自動化システム管理、データ倫理</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2030年〜2040年</div>
+                    <div class="timeline-content">
+                        <p><strong>複雑業務の自動化フェーズ</strong>：基本的な診断、法律文書作成、教育内容の一部などの知的業務が自動化</p>
+                        <p>必要とされる産業：人間ならではの判断力強化、創造性産業、感情労働の質的向上</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2040年〜2050年</div>
+                    <div class="timeline-content">
+                        <p><strong>創造的業務の一部自動化フェーズ</strong>：基本的なデザイン、コンテンツ作成、研究開発の一部が自動化</p>
+                        <p>必要とされる産業：人間とAIの共創、意味づけと価値創造、超個人化サービス</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2050年以降</div>
+                    <div class="timeline-content">
+                        <p><strong>自動化と人間性の調和フェーズ</strong>：物質的生産のほぼ全てが自動化、人間は創造性、共感、意味、価値の領域に特化</p>
+                        <p>必要とされる産業：存在の意味探求支援、共同体形成、人間性の本質的価値創出</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-section">
+            <h3>自動化前後の産業価値比較</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>現在の価値観</th>
+                    <th>自動化時代の価値観</th>
+                </tr>
+                <tr>
+                    <td>効率性・生産性</td>
+                    <td>意味・充足感</td>
+                </tr>
+                <tr>
+                    <td>標準化・均質性</td>
+                    <td>個性化・多様性</td>
+                </tr>
+                <tr>
+                    <td>機能性</td>
+                    <td>体験の質</td>
+                </tr>
+                <tr>
+                    <td>物質的豊かさ</td>
+                    <td>精神的豊かさ</td>
+                </tr>
+                <tr>
+                    <td>消費</td>
+                    <td>創造・共創</td>
+                </tr>
