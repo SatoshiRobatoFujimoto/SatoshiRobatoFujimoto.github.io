@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ぴったり水引</title>
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --ink: #241c16;
+      --seal: #d6453d;
+      --gold: #e6c56a;
+      --muted: rgba(246, 241, 231, 0.72);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      color: var(--paper);
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Hiragino Mincho Pro", serif;
+      background:
+        radial-gradient(ellipse at 42% 42%, #3f6863 0%, #1d3533 52%, #122321 100%);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .game {
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 3vw, 48px);
+      padding: 20px 24px;
+    }
+
+    .stage-slot {
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      height: min(100%, 920px);
+      width: auto;
+      max-width: 100%;
+      aspect-ratio: 1672 / 2968;
+    }
+
+    .sheet {
+      position: absolute;
+      width: 180.86%;
+      height: 135.85%;
+      left: -35.11%;
+      top: -16.04%;
+    }
+
+    .sheet img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+    }
+
+    .mizuhiki {
+      z-index: 2;
+      transform-origin: 50.5% 56.34%;
+      will-change: transform;
+    }
+
+    .target {
+      position: absolute;
+      z-index: 1;
+      left: 24%;
+      right: 30%;
+      top: calc(50.45% + 12px);
+      height: 0;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .target i {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin-top: -1px;
+      background: var(--gold);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+    }
+
+    .stage.is-perfect .target i {
+      background: #fff4c8;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .panel {
+      flex: none;
+      width: min(260px, 34vw);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .switch {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .switch-btn {
+      font: inherit;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid rgba(246, 241, 231, 0.38);
+      border-radius: 999px;
+      padding: 6px 16px;
+      cursor: pointer;
+    }
+
+    .switch-btn.is-on {
+      color: #241c16;
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .switch-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+    }
+
+    .score {
+      margin: 28px 0 0;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      min-height: 72px;
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+      font-size: 72px;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .score.is-perfect .num {
+      color: #ffd77a;
+    }
+
+    .unit {
+      font-size: 18px;
+      letter-spacing: 0.14em;
+    }
+
+    .judge {
+      margin: 8px 0 0;
+      min-height: 1.6em;
+      font-size: 20px;
+      letter-spacing: 0.14em;
+    }
+
+    .seal {
+      margin-top: 28px;
+      width: 148px;
+      height: 148px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff8f2;
+      background:
+        radial-gradient(circle at 38% 32%, #ee6a5c 0%, #d6453d 42%, #9d2b26 100%);
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      font: inherit;
+      font-size: 26px;
+      letter-spacing: 0.14em;
+      touch-action: manipulation;
+    }
+
+    .seal:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .seal:disabled {
+      cursor: wait;
+      filter: grayscale(0.4);
+    }
+
+    .seal:not(:disabled):hover {
+      filter: brightness(1.05);
+    }
+
+    .seal:not(:disabled):active {
+      transform: scale(0.96);
+    }
+
+    .seal.is-retry {
+      font-size: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .best, .hint {
+      margin: 0;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .best {
+      margin-top: 22px;
+      font-size: 14px;
+    }
+
+    .best strong {
+      color: var(--paper);
+      font-weight: 600;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .game {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 8px;
+        padding: 12px 16px 14px;
+      }
+
+      .stage-slot { width: 100%; }
+
+      .stage {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .panel {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+      }
+
+      .switch { margin-bottom: 8px; }
+      .switch-btn { font-size: 13px; padding: 4px 12px; }
+      h1 { font-size: 28px; }
+      .lead { margin-top: 4px; font-size: 13px; line-height: 1.6; }
+      .score { margin-top: 6px; min-height: 48px; }
+      .num { font-size: 48px; }
+      .judge { font-size: 16px; }
+      .seal { margin-top: 8px; width: 96px; height: 96px; font-size: 18px; }
+      .seal.is-retry { font-size: 15px; }
+      .best { margin-top: 8px; }
+      .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="game">
+    <div class="stage-slot">
+    <div class="stage">
+      <div class="sheet" id="sheet">
+        <img class="envelope" src="images/envelope.png" alt="封筒">
+        <div class="target" aria-hidden="true"><i></i><i></i></div>
+        <img class="mizuhiki" id="mizuhiki" src="images/mizuhiki.png" alt="水引">
+      </div>
+    </div>
+    </div>
+    <section class="panel">
+      <div class="switch" role="tablist" aria-label="遊び方">
+        <button type="button" class="switch-btn is-on" data-kind="slide" role="tab" aria-selected="true">上下</button>
+        <button type="button" class="switch-btn" data-kind="spin" role="tab" aria-selected="false">回転</button>
+      </div>
+      <h1>ぴったり水引</h1>
+      <p class="lead" id="lead">水引が封筒の上を上下に動きます。<br>中央にぴったり止めると100点。</p>
+      <p class="score" id="score"><span class="num" id="num">—</span><span class="unit">点</span></p>
+      <p class="judge" id="judge">準備ができたらスタート</p>
+      <button type="button" class="seal" id="action" disabled>スタート</button>
+      <p class="best">最高 <strong id="best">0</strong>点</p>
+      <p class="hint">クリックかスペースキーで止められます</p>
+    </section>
+  </main>
+  <script>
+    // 写真の中での結び目と封筒の中心。静止位置はこのぶんだけずらす。
+    const HOME_Y = -0.0642
+    const HOME_X = -3.37
+    const NUDGE_Y = 12
+    // 結び目が封筒の上端から下端まで届く幅
+    const AMP = 0.28
+    const SPIN = 80
+    const PERIOD = 820
+    const COPY = {
+      slide: {
+        lead: "水引が封筒の上を上下に動きます。<br>中央にぴったり止めると100点。",
+        playing: "中央で止めよう"
+      },
+      spin: {
+        lead: "水引が回転します。<br>0度で止めると100点。",
+        playing: "0度で止めよう"
+      }
+    }
+
+    const stage = document.getElementById("sheet")
+    const mizuhiki = document.getElementById("mizuhiki")
+    const action = document.getElementById("action")
+    const num = document.getElementById("num")
+    const scoreEl = document.getElementById("score")
+    const judge = document.getElementById("judge")
+    const bestEl = document.getElementById("best")
+    const lead = document.getElementById("lead")
+
+    const BEST_KEY = "pittari-mizuhiki-best"
+    let kind = "slide"
+    let best = Number(localStorage.getItem(BEST_KEY) || 0)
+    bestEl.textContent = String(best)
+
+    let mode = "idle"
+    let origin = 0
+    let raf = 0
+    let scoreRaf = 0
+    let offset = 0
+    let lastUnit = 0
+    let audioCtx
+
+    function stageHeight() {
+      return stage.getBoundingClientRect().height
+    }
+
+    function wave(now) {
+      return Math.sin(((now - origin) / PERIOD) * Math.PI * 2)
+    }
+
+    function place(unit) {
+      const travel = kind === "spin" ? 0 : unit * AMP
+      const angle = kind === "spin" ? unit * SPIN : 0
+      const y = (HOME_Y + travel) * stageHeight() + NUDGE_Y
+      mizuhiki.style.transform = `translate3d(${HOME_X}%, ${y}px, 0) rotate(${angle}deg)`
+      offset = kind === "spin" ? angle : unit * AMP * stageHeight()
+    }
+
+    function frame(now) {
+      place(wave(now))
+      raf = requestAnimationFrame(frame)
+    }
+
+    function scoreFor(absOffset, ampPx) {
+      // 移動幅が広くても、100点は印に重なったときだけ
+      const perfect = stageHeight() * 0.0075
+      if (absOffset <= perfect) return 100
+      const t = Math.min(1, (absOffset - perfect) / (ampPx - perfect))
+      return Math.max(0, Math.round(99 * (1 - t) ** 0.85))
+    }
+
+    function scoreForAngle(absDeg) {
+      // 上下モードと同じ厳しさ。振り幅の端ではなく、0度のすぐそばだけ100点
+      const perfect = SPIN * (0.0075 / AMP)
+      if (absDeg <= perfect) return 100
+      const t = Math.min(1, (absDeg - perfect) / (SPIN - perfect))
+      return Math.max(0, Math.round(99 * (1 - t) ** 0.85))
+    }
+
+    function bestKey() {
+      return kind === "spin" ? "pittari-mizuhiki-best-spin" : BEST_KEY
+    }
+
+    function phrase(score) {
+      if (score === 100) return "ピッタリ！"
+      if (score >= 85) return "あと少し"
+      if (score >= 60) return "いい感じ"
+      if (score >= 30) return "もう一度挑戦"
+      return "はずれ"
+    }
+
+    function tone(freq, delay, dur) {
+      try {
+        audioCtx ??= new AudioContext()
+        const t0 = audioCtx.currentTime + delay
+        const osc = audioCtx.createOscillator()
+        const gain = audioCtx.createGain()
+        osc.type = "sine"
+        osc.frequency.value = freq
+        gain.gain.setValueAtTime(0.0001, t0)
+        gain.gain.exponentialRampToValueAtTime(0.08, t0 + 0.02)
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
+        osc.connect(gain).connect(audioCtx.destination)
+        osc.start(t0)
+        osc.stop(t0 + dur)
+      } catch (_) {}
+    }
+
+    function setButton(label, retry) {
+      action.textContent = label
+      action.classList.toggle("is-retry", retry)
+      action.disabled = false
+    }
+
+    function showScore(score) {
+      scoreEl.classList.toggle("is-perfect", score === 100)
+      stage.parentElement.classList.toggle("is-perfect", score === 100)
+      const start = performance.now()
+      const duration = 380
+      function tick(now) {
+        const p = Math.min(1, (now - start) / duration)
+        num.textContent = String(Math.round(score * (1 - (1 - p) ** 3)))
+        if (p < 1) scoreRaf = requestAnimationFrame(tick)
+      }
+      cancelAnimationFrame(scoreRaf)
+      scoreRaf = requestAnimationFrame(tick)
+      judge.textContent = phrase(score)
+      if (score > best) {
+        best = score
+        bestEl.textContent = String(best)
+        localStorage.setItem(bestKey(), String(best))
+      }
+    }
+
+    function start() {
+      cancelAnimationFrame(scoreRaf)
+      mode = "playing"
+      origin = performance.now() - Math.random() * PERIOD
+      scoreEl.classList.remove("is-perfect")
+      stage.parentElement.classList.remove("is-perfect")
+      num.textContent = "—"
+      judge.textContent = COPY[kind].playing
+      setButton("止める", false)
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(frame)
+    }
+
+    function stop() {
+      if (mode !== "playing") return
+      mode = "result"
+      cancelAnimationFrame(raf)
+      const unit = wave(performance.now())
+      lastUnit = unit
+      place(unit)
+      const score = kind === "spin"
+        ? scoreForAngle(Math.abs(unit) * SPIN)
+        : scoreFor(Math.abs(unit) * AMP * stageHeight(), AMP * stageHeight())
+      showScore(score)
+      setButton("もう一度", true)
+      if (score === 100) {
+        tone(523, 0, 0.18)
+        tone(659, 0.1, 0.28)
+      } else {
+        tone(196, 0, 0.09)
+      }
+    }
+
+    function setKind(next) {
+      if (next === kind) return
+      kind = next
+      cancelAnimationFrame(raf)
+      cancelAnimationFrame(scoreRaf)
+      mode = "idle"
+      lastUnit = 0
+      scoreEl.classList.remove("is-perfect")
+      stage.parentElement.classList.remove("is-perfect")
+      num.textContent = "—"
+      judge.textContent = "準備ができたらスタート"
+      lead.innerHTML = COPY[kind].lead
+      setButton("スタート", false)
+      document.querySelectorAll(".switch-btn").forEach((btn) => {
+        const on = btn.dataset.kind === kind
+        btn.classList.toggle("is-on", on)
+        btn.setAttribute("aria-selected", on ? "true" : "false")
+      })
+      best = Number(localStorage.getItem(bestKey()) || 0)
+      bestEl.textContent = String(best)
+      settle()
+    }
+
+    document.querySelectorAll(".switch-btn").forEach((btn) => {
+      btn.addEventListener("click", () => setKind(btn.dataset.kind))
+    })
+
+    function press() {
+      if (action.disabled) return
+      if (mode === "playing") stop()
+      else start()
+    }
+
+    action.addEventListener("click", press)
+    stage.addEventListener("pointerdown", (event) => {
+      if (mode !== "playing") return
+      event.preventDefault()
+      stop()
+    })
+    window.addEventListener("keydown", (event) => {
+      if (event.repeat) return
+      if (event.code !== "Space" && event.code !== "Enter") return
+      if (event.target.closest(".switch")) return
+      event.preventDefault()
+      press()
+    })
+
+    function settle() {
+      if (mode === "playing") return
+      place(mode === "result" ? lastUnit : 0)
+    }
+
+    document.querySelector(".target").style.top = `calc(50.45% + ${NUDGE_Y}px)`
+    requestAnimationFrame(settle)
+    window.addEventListener("resize", settle)
+    Promise.all([
+      document.querySelector(".envelope").decode(),
+      mizuhiki.decode()
+    ]).then(() => {
+      action.disabled = false
+      settle()
+    }).catch(() => {
+      action.disabled = false
+      settle()
+    })
+  </script>
+</body>
+</html>
